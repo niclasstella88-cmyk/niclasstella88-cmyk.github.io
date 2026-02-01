@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio SWE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #0a0a0f;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            background: #0a0a0f;
+            border-bottom: 1px solid #1a1a1f;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        .menu-btn {
+            width: 44px;
+            height: 44px;
+            background: #1a1a1f;
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .main {
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 32px;
+            padding: 20px 0;
+        }
+        
+        .hero h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            color: #9ca3af;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        
+        .new-video-btn {
+            width: 100%;
+            padding: 18px 24px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .section {
+            margin-bottom: 24px;
+        }
+        
+        .section-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #3b82f6;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+        
+        .card {
+            background: #15151a;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 12px;
+            border: 1px solid #1f1f25;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .card-icon {
+            width: 36px;
+            height: 36px;
+            background: #1a1a1f;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .card-text {
+            color: #9ca3af;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .platform-btn {
+            background: #15151a;
+            border: 2px solid #1f1f25;
+            border-radius: 14px;
+            padding: 20px 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .platform-btn.active {
+            border-color: #3b82f6;
+            background: #1a1f2e;
+        }
+        
+        .platform-btn.paused {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        
+        .platform-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        
+        .platform-name {
+            font-size: 13px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 4px;
+        }
+        
+        .platform-status {
+            font-size: 11px;
+            color: #9ca3af;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #d4d4d8;
+        }
+        
+        .text-input {
+            width: 100%;
+            padding: 16px;
+            background: #0a0a0f;
+            border: 1px solid #2a2a30;
+            border-radius: 12px;
+            color: white;
+            font-size: 15px;
+            resize: none;
+            min-height: 120px;
+            font-family: inherit;
+        }
+        
+        .text-input::placeholder {
+            color: #6b7280;
+        }
+        
+        .tag-select {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        
+        .tag {
+            padding: 8px 16px;
+            background: #1a1a1f;
+            border: 1px solid #2a2a30;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            color: #9ca3af;
+        }
+        
+        .tag.active {
+            background: #3b82f6;
+            border-color: #3b82f6;
+            color: white;
+        }
+        
+        .generate-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #0a0a0f;
+            border-top: 1px solid #1a1a1f;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0 24px;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #6b7280;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        .nav-item.active {
+            color: #ef4444;
+        }
+        
+        .nav-icon {
+            font-size: 24px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .variant-card {
+            background: #1a1a1f;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+        
+        .variant-card:hover {
+            border-color: #3b82f6;
+        }
+        
+        .variant-label {
+            font-size: 12px;
+            color: #3b82f6;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        
+        .variant-hook {
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+        
+        .variant-meta {
+            font-size: 12px;
+            color: #6b7280;
+        }
+        
+        .timestamp-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+            align-items: flex-start;
+        }
+        
+        .timestamp {
+            color: #3b82f6;
+            font-size: 13px;
+            font-weight: 600;
+            min-width: 50px;
+        }
+        
+        .timestamp-text {
+            color: #d4d4d8;
+            font-size: 14px;
+            line-height: 1.5;
+            flex: 1;
+        }
+        
+        .action-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .action-btn {
+            flex: 1;
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .action-btn.secondary {
+            background: #1a1a1f;
+            color: white;
+        }
+        
+        .action-btn.primary {
+            background: #3b82f6;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <div class="logo-icon">⚡</div>
+            <div class="logo-text">Studio SWE</div>
+        </div>
+        <button class="menu-btn">☰</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        
+        <!-- Start View -->
+        <div id="startView">
+            <div class="hero">
+                <h1>Skapa innehåll som konverterar</h1>
+                <p>AI-genererade manus optimerade för TikToks algoritm. Från idé till publicering på minuter.</p>
+            </div>
+            
+            <button class="new-video-btn" onclick="showPlatform()">
+                <span>+</span>
+                <span>Ny video</span>
+            </button>
+            
+            <div class="section">
+                <div class="section-title">Senaste</div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">🏠</div>
+                        <div class="card-title">Renovering badrum</div>
+                    </div>
+                    <div class="card-text">Siffra-shock variant • Schemalagd 19:00</div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">📈</div>
+                        <div class="card-title">Första fastigheten</div>
+                    </div>
+                    <div class="card-text">Misstag/lärdom variant • Publicerad</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Platform View -->
+        <div id="platformView" class="hidden">
+            <div class="hero">
+                <h1>Välj plattform</h1>
+                <p>Välj var du vill publicera. Fler plattformar kommer snart.</p>
+            </div>
+            
+            <div class="platform-grid">
+                <div class="platform-btn active" onclick="selectPlatform('tiktok')">
+                    <div class="platform-icon">🎵</div>
+                    <span class="platform-name">TikTok</span>
+                    <span class="platform-status">Aktiv</span>
+                </div>
+                <div class="platform-btn paused">
+                    <div class="platform-icon">▶️</div>
+                    <span class="platform-name">YouTube</span>
+                    <span class="platform-status">Våren 2026</span>
+                </div>
+                <div class="platform-btn paused">
+                    <div class="platform-icon">📸</div>
+                    <span class="platform-name">Instagram</span>
+                    <span class="platform-status">Hösten 2026</span>
+                </div>
+            </div>
+            
+            <button class="generate-btn" onclick="showCreate()">Fortsätt med TikTok</button>
+        </div>
+
+        <!-- Create View -->
+        <div id="createView" class="hidden">
+            <div class="hero">
+                <h1>Beskriv din video</h1>
+                <p>Berätta vad videon handlar om. AI skapar 3 varianter.</p>
+            </div>
+            
+            <div class="input-group">
+                <label class="input-label">Vad handlar videon om?</label>
+                <textarea class="text-input" placeholder="Ex: Jag köpte en lägenhet för 2.3M, renoverade badrum och kök för 180k, sålde för 3.2M ett år senare..."></textarea>
+            </div>
+            
+            <div class="input-group">
+                <label class="input-label">Fas</label>
+                <div class="tag-select">
+                    <span class="tag active">Köpa</span>
+                    <span class="tag">Renovera</span>
+                    <span class="tag">Sälja</span>
+                    <span class="tag">Investera</span>
+                </div>
+            </div>
+            
+            <div class="input-group">
+                <label class="input-label">Mål med videon</label>
+                <div class="tag-select">
+                    <span class="tag active">Motivera</span>
+                    <span class="tag">Edu</span>
+                    <span class="tag">Dokumentera</span>
+                </div>
+            </div>
+            
+            <button class="generate-btn" onclick="showVariants()">Generera 3 varianter</button>
+        </div>
+
+        <!-- Variants View -->
+        <div id="variantsView" class="hidden">
+            <div class="hero">
+                <h1>Välj din variant</h1>
+                <p>Alla optimerade för retention och engagemang.</p>
+            </div>
+            
+            <div class="variant-card" onclick="showScript()">
+                <div class="variant-label">Variant A • Siffra-shock</div>
+                <div class="variant-hook">"Så här fick jag 847k i vinst på mitt första köp (med vanligt jobb)"</div>
+                <div class="variant-meta">Hög retention • Leder till frågor i kommentarerna</div>
+            </div>
+            
+            <div class="variant-card" onclick="showScript()">
+                <div class="variant-label">Variant B • Misstag/lärdom</div>
+                <div class="variant-hook">"Alla sa jag var dum som renoverade själv. 3 år senare: beviset"</div>
+                <div class="variant-meta">Bygger förtroende • Bra för serie-innehåll</div>
+            </div>
+            
+            <div class="variant-card" onclick="showScript()">
+                <div class="variant-label">Variant C • Kontrast</div>
+                <div class="variant-hook">"Lön 45k → Fri på 5 år. Så här gjorde jag utan att vinna på lotto"</div>
+                <div class="variant-meta">Viral potential • Hög delningsfrekvens</div>
+            </div>
+            
+            <button class="generate-btn secondary" style="margin-top: 8px;">Generera 3 nya</button>
+        </div>
+
+        <!-- Script View -->
+        <div id="scriptView" class="hidden">
+            <div class="hero">
+                <h1>Ditt manus</h1>
+                <p>Komplett med tidsstämplar och instruktioner.</p>
+            </div>
+            
+            <div class="card">
+                <div class="section-title">Hook</div>
+                <div style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">
+                    "Så här fick jag 847k i vinst på mitt första köp"
+                </div>
+                
+                <div class="section-title">Manus</div>
+                
+                <div class="timestamp-row">
+                    <span class="timestamp">[0-3s]</span>
+                    <span class="timestamp-text">POV: Du tjänar 45k i månaden och drömmer om frihet</span>
+                </div>
+                
+                <div class="timestamp-row">
+                    <span class="timestamp-text" style="color: #6b7280; font-size: 12px; margin-left: 62px; margin-bottom: 8px;">
+                        🎬 Visa: Lönecheck eller jobbmontage
+                    </span>
+                </div>
+                
+                <div class="timestamp-row">
+                    <span class="timestamp">[3-10s]</span>
+                    <span class="timestamp-text">Problemet: Alla säger det är omöjligt utan rika föräldrar</span>
+                </div>
+                
+                <div class="timestamp-row">
+                    <span class="timestamp">[10-25s]</span>
+                    <span class="timestamp-text">Lösningen: Köpte lägenhet för 2.3M, renoverade smart för 180k</span>
+                </div>
+                
+                <div class="timestamp-row">
+                    <span class="timestamp">[25-45s]</span>
+                    <span class="timestamp-text">Beviset: Sålde för 3.2M. Vinst: 847k efter skatt och avgifter</span>
+                </div>
+                
+                <div class="timestamp-row">
+                    <span class="timestamp">[45-60s]</span>
+                    <span class="timestamp-text">CTA: Detta var steg 1. Följ för steg 2: hur jag investerade vinsten</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="section-title">Caption</div>
+                <div class="card-text" style="margin-bottom: 12px;">
+                    Transparent breakdown av min första fastighetsaffär.<br><br>
+                    Inga gurutricks. Bara ett fast jobb, ett lån, och smarta val.<br><br>
+                    Vill du se exakt hur jag gjorde? Följ för del 2 👇
+                </div>
+                <div style="color: #3b82f6; font-size: 13px;">
+                    #fastigheter #investera #passivinkomst #ekonomiskfrihet #svensktiktok
+                </div>
+            </div>
+            
+            <div class="action-row">
+                <button class="action-btn secondary">Spara utkast</button>
+                <button class="action-btn primary">Schemalägg</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav">
+        <div class="nav-item active">
+            <span class="nav-icon">+</span>
+            <span>Skapa</span>
+        </div>
+        <div class="nav-item">
+            <span class="nav-icon">▶</span>
+            <span>Videor</span>
+        </div>
+        <div class="nav-item">
+            <span class="nav-icon">📊</span>
+            <span>Statistik</span>
+        </div>
+        <div class="nav-item">
+            <span class="nav-icon">⚙</span>
+            <span>Inställningar</span>
+        </div>
+    </div>
+
+    <script>
+        function hideAll() {
+            document.getElementById('startView').classList.add('hidden');
+            document.getElementById('platformView').classList.add('hidden');
+            document.getElementById('createView').classList.add('hidden');
+            document.getElementById('variantsView').classList.add('hidden');
+            document.getElementById('scriptView').classList.add('hidden');
+        }
+        
+        function showPlatform() {
+            hideAll();
+            document.getElementById('platformView').classList.remove('hidden');
+        }
+        
+        function selectPlatform(platform) {
+            document.querySelectorAll('.platform-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+        }
+        
+        function showCreate() {
+            hideAll();
+            document.getElementById('createView').classList.remove('hidden');
+        }
+        
+        function showVariants() {
+            hideAll();
+            document.getElementById('variantsView').classList.remove('hidden');
+        }
+        
+        function showScript() {
+            hideAll();
+            document.getElementById('scriptView').classList.remove('hidden');
+        }
+        
+        // Tag selection
+        document.querySelectorAll('.tag').forEach(tag => {
+            tag.addEventListener('click', function() {
+                this.parentElement.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
