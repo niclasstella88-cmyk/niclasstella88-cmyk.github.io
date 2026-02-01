@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio SWE | TikTok Automation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav__container">
+            <a href="#" class="nav__logo"><span>Studio</span><span style="color:#0066FF">SWE</span></a>
+            <ul class="nav__menu">
+                <li><a href="#generator" class="nav__link">Content Generator</a></li>
+                <li><a href="#pricing" class="nav__link">Priser</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container" style="text-align:center; padding:120px 20px 60px;">
+            <span class="badge">Nyhet 2026</span>
+            <h1 class="hero__title">Automatisera din <span style="color:#0066FF">TikTok-närvaro</span> och skala</h1>
+            <p class="hero__subtitle">Vi bygger kompletta content-system som genererar leads dygnet runt.</p>
+            <a href="#generator" class="btn btn--primary">Skapa content →</a>
+            
+            <div class="stats">
+                <div class="stat"><strong>150</strong><span>Kunder</span></div>
+                <div class="stat"><strong>2.5M</strong><span>Visningar</span></div>
+                <div class="stat"><strong>100%</strong><span>Automatiskt</span></div>
+            </div>
+        </div>
+    </header>
+
+    <section id="generator" class="section section--dark">
+        <div class="container">
+            <h2 class="section__title">Skapa viralt content på 30 sekunder</h2>
+            
+            <div class="generator__input">
+                <input type="text" id="topic" placeholder="Skriv ämne t.ex. 'AI-verktyg'">
+                <button onclick="generateContent()" class="btn btn--primary">→</button>
+            </div>
+
+            <div id="outputArea" class="generator__output">
+                <p class="placeholder">Ditt content visas här...</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="section">
+        <div class="container">
+            <h2 class="section__title">Välj ditt paket</h2>
+            <div class="pricing-grid">
+                
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <p class="pricing__desc">För solelprofiler</p>
+                    <div class="pricing__price">15 000 <span>kr</span></div>
+                    <p class="pricing__monthly">+ 2 500 kr/mån</p>
+                    <ul>
+                        <li>✓ 1 plattform</li>
+                        <li>✓ 3 videos/vecka</li>
+                        <li>✓ Support</li>
+                    </ul>
+                    <button onclick="alert('Maila info@studioswe.se')">Välj Starter</button>
+                </div>
+
+                <div class="pricing-card pricing-card--featured">
+                    <span class="badge badge--top">MEST POPULÄR</span>
+                    <h3>Professional</h3>
+                    <p class="pricing__desc">För tillväxt</p>
+                    <div class="pricing__price">20 000 <span>kr</span></div>
+                    <p class="pricing__monthly">+ 4 000 kr/mån</p>
+                    <ul>
+                        <li>✓ Alla plattformar</li>
+                        <li>✓ Dagligen content</li>
+                        <li>✓ Lead-scoring</li>
+                    </ul>
+                    <button onclick="alert('Bra val! Maila info@studioswe.se')" class="btn--primary">Välj Professional</button>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <p class="pricing__desc">Fullservice</p>
+                    <div class="pricing__price">25 000 <span>kr</span></div>
+                    <p class="pricing__monthly">+ 6 000 kr/mån</p>
+                    <ul>
+                        <li>✓ Obegränsat</li>
+                        <li>✓ Egen manager</li>
+                        <li>✓ 24/7 support</li>
+                    </ul>
+                    <button onclick="alert('Kontakta info@studioswe.se')">Kontakta sälj</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <h3>Studio SWE</h3>
+        <p>Sveriges ledande TikTok-automation byrå</p>
+        <p class="copyright">© 2026 Studio SWE</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
