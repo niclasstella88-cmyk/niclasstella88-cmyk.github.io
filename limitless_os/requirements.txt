@@ -1,0 +1,19 @@
+# LIMITLESS OS — Python dependencies
+# Install with: pip install -r requirements.txt
+# Python 3.11+ required
+
+# Async HTTP client
+httpx==0.27.2
+
+# Anthropic Claude SDK
+anthropic==0.34.2
+
+# Google Sheets
+gspread==6.1.2
+google-auth==2.35.0
+
+# Cron / scheduling
+schedule==1.2.2
+
+# Environment variable loading
+python-dotenv==1.0.1
